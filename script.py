@@ -74,7 +74,7 @@ def main(fname_json, fname_pina, fname_rowlabels, w=10000):
     title="GSE7307 top %d Enrichment" % w, Ranks=Results, plotpath="enrichment.png")
   
 
-    
+
 if __name__ == "__main__":
   print sys.argv
   main(**dict([s.split('=') for s in sys.argv[1:]]))
