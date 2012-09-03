@@ -14,9 +14,35 @@
     	    "function": "DCOR",
             "values_file": "gse7307_gpl570_dcor.DCOR.values.npy"
         },
+	{
+    	    "function": "DCOV",
+            "values_file": "gse7307_gpl570_dcor.DCOV.values.npy"
+        },
         {
     	    "function": "PCC",
-            "values_file": "gse7307_gpl570_pearson.PEARSON.values.npy"
+            "values_file": "gse7307_gpl570_pearson.PEARSON.values.npy",
+    	    "abs": 1
+        },
+        {
+    	    "function": "HHG_SUM_CHI",
+            "values_file": "gse7307_gpl570_hhg.SUM_CHI.values.npy"
+        },
+        {
+    	    "function": "MAX_CHI",
+            "values_file": "gse7307_gpl570_hhg.MAX_CHI.values.npy"
+        },
+        {
+    	    "function": "SUM_LR",
+            "values_file": "gse7307_gpl570_hhg.SUM_LR.values.npy"
+        },
+        {
+    	    "function": "MAX_LR",
+            "values_file": "gse7307_gpl570_hhg.MAX_LR.values.npy"
+        },
+        {
+    	    "function": "SPEARMAN",
+            "values_file": "gse7307_gpl570_spearman.SPEARMAN.values.npy",
+	    "abs": 1
         }
    ]
 }
