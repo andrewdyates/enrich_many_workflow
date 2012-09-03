@@ -1,0 +1,22 @@
+{
+    "gse_id": "GSE7307",
+    "dir": "/nfs/01/osu6683/gse7307/",
+    "data_file": "GSE7307_GPL570.normed.masked.pkl.gt0.25.pina.tab",
+    "data_matrix": "GSE7307_GPL570.normed.masked.pkl.gt0.25.pina.tab.pkl",
+    "n_pairs": -1,
+    "n_vars": -1,
+    "dependencies": [
+        {
+    	    "function": "MIC",
+            "values_file": "gse7307_gpl570_mine.MIC.values.npy"
+        },
+        {
+    	    "function": "DCOR",
+            "values_file": "gse7307_gpl570_dcor.DCOR.values.npy"
+        },
+        {
+    	    "function": "PCC",
+            "values_file": "gse7307_gpl570_pearson.PEARSON.values.npy"
+        }
+   ]
+}
