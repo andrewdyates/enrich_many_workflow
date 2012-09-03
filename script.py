@@ -27,16 +27,16 @@ import numpy as np
 import sys
 
 
-def main(fname_json, fname_pina, fname_rowlabels):
+def main(fname_json, fname_pina, fname_rowlabels, w=10000):
   Enrich = PINAEnriched(open(fname_pina))
   gene_syms = [s.split('\t')[2].strip('\n') for s in open(fname_rowlabels) if s.strip()]
   assert len(Enrich.vars) >= len(gene_syms)
   for s in gene_syms:
     assert Enrich.is_in(s)
   n = len(gene_syms)
-
   J = json.load(open(fname_json))
-  w = 10000
+  Results = {}
+
   for dep in J["dependencies"]:
     print dep["function"]
     print dep["values_file"]
@@ -51,6 +51,7 @@ def main(fname_json, fname_pina, fname_rowlabels):
       if Enrich.exists(gene_syms[x], gene_syms[y]):
         g.append(i)
     print "matches in top (%d) rank: %d" % (w, len(g))
+    Results[dep["function"]] = g
 
     # Absolute value
     if "abs" in dep and dep["abs"]:
@@ -63,6 +64,9 @@ def main(fname_json, fname_pina, fname_rowlabels):
         if Enrich.exists(gene_syms[x], gene_syms[y]):
           g.append(i)
       print "matches in top (%d) rank: %d" % (w, len(g))
+      Results[dep["function"]+"_abs"] = g
+      
+  # Plot enrichment curves TODO
 
     
 if __name__ == "__main__":
