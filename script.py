@@ -50,8 +50,10 @@ def main(fname_json, fname_pina, fname_rowlabels, w=10000):
       x, y = inv_sym_idx(Q[i], n)
       if Enrich.exists(gene_syms[x], gene_syms[y]):
         g.append(i)
+    print "last value considered:", M[Q[w]]
     print "matches in top (%d) rank: %d" % (w, len(g))
     Results[dep["function"]] = g
+    
 
     # Absolute value
     if "abs" in dep and dep["abs"]:
@@ -63,10 +65,14 @@ def main(fname_json, fname_pina, fname_rowlabels, w=10000):
         x, y = inv_sym_idx(Q[i], n)
         if Enrich.exists(gene_syms[x], gene_syms[y]):
           g.append(i)
+      print "last value considered:", M[Q[w]]
       print "matches in top (%d) rank: %d" % (w, len(g))
       Results[dep["function"]+"_abs"] = g
       
-  # Plot enrichment curves TODO
+  # Plot enrichment curves
+  gene_enrichment.make_enrichment_curve_figure(\
+    title="GSE7307 top %d Enrichment" % w, Ranks=Results, plotpath="enrichment.png")
+  
 
     
 if __name__ == "__main__":
