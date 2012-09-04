@@ -1,3 +1,6 @@
 [submodule "gene_enrichment"]
 	path = gene_enrichment
 	url = git@github.com:andrewdyates/gene_enrichment.git
+[submodule "lab_util"]
+	path = lab_util
+	url = git@github.com:andrewdyates/lab_util.git
