@@ -50,10 +50,11 @@ def main(fname_json, fname_pina, fname_rowlabels, outdir=""):
 
 
 def enrich_rank(Enrich, M, w, n, gene_syms):
-  Q = M.argsort()[::-1]
-  print np.size(Q), np.size(M)
+  Q = M.argsort()[::-1] # Copy argsorted in reverse order
+  self.assertEqual(np.size(Q), np.size(M))
   g = []
-  print "Rank Check: Top 2:", M[Q[0]], M[Q[1]], "Number==0:", np.sum(M==0)
+  print "Rank Check: Top 2:", M[Q[0]], M[Q[1]]
+  print "Number of dependencies == 0 (may indicate missing values):", np.sum(M==0)
   for i in xrange(w):
     try:
       x, y = inv_sym_idx(Q[i], n)
@@ -64,6 +65,7 @@ def enrich_rank(Enrich, M, w, n, gene_syms):
       g.append(i)
   print "last value considered:", M[Q[w]]
   print "matches in top (%d) rank: %d" % (w, len(g))
+  print
   return g
 
 
@@ -82,10 +84,12 @@ def make_ranks(Enrich, J, w, n, gene_syms):
     assert np.size(M,0) == n_expected == n*(n-1)/2
     Results[dep["function"]] = enrich_rank(Enrich, M, w, n, gene_syms)
     
-    # Absolute value
+    # Absolute and negative values
     if "abs" in dep and dep["abs"]:
       print dep["function"], "absolute value"
       Results["abs(%s)"%dep["function"]] = enrich_rank(Enrich, np.abs(M), w, n, gene_syms)
+      print dep["function"], "negative value"
+      Results["neg(%s)"%dep["function"]] = enrich_rank(Enrich, -M), w, n, gene_syms)
       
   return Results
 
